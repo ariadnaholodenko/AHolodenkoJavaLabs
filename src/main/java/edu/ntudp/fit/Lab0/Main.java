@@ -1,6 +1,6 @@
-package edu.ntudp.fit.lb0;
+package edu.ntudp.fit.Lab0;
 
-public class Main1 {
+public class Main {
     public static void main(String[] args) {
 
         System.out.println("Hello world!");
