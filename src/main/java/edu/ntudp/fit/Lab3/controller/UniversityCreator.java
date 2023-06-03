@@ -10,7 +10,7 @@ public class UniversityCreator {
     }
 
     public University createTypicalUniversity(String name) {
-        University university = (University) componentCreator.createUniversity(name);
+        University university = (University) componentCreator.createUniversity("НТУ ДП");
 
         Faculty faculty1 = componentCreator.createFaculty("Інформаційних технологій", new Human("Дмитро", "Дмитренко", "Дмитрович", Sex.MALE));
         university.addFaculty(faculty1);
@@ -31,11 +31,12 @@ public class UniversityCreator {
         department2.addStudent(student2);
 
 
-        System.out.println("Факультет: " + faculty1.getName());
+        System.out.println("Університет: " + university.getName());
+        System.out.println("\nФакультет: " + faculty1.getName());
         System.out.println("Кафедра: " + department1.getName());
         System.out.println(student1.toString());
 
-        System.out.println("Факультет: " + faculty2.getName());
+        System.out.println("\nФакультет: " + faculty2.getName());
         System.out.println("Кафедра: " + department2.getName());
         System.out.println(student2.toString());
 
