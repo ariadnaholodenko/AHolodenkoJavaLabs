@@ -1,18 +1,17 @@
 package edu.ntudp.fit.Lab4.controller;
 
 import edu.ntudp.fit.Lab4.ComponentCreator;
-import edu.ntudp.fit.Lab4.model.*;
 import edu.ntudp.fit.Lab4.JsonManager;
-import edu.ntudp.fit.Lab4.util.FileUtils;
-import java.io.FileReader;
-import java.io.FileWriter;
+import edu.ntudp.fit.Lab4.model.*;
 import java.io.IOException;
 
 public class UniversityCreator {
     private ComponentCreator componentCreator;
+    private JsonManager jsonManager;
 
     public UniversityCreator(ComponentCreator componentCreator) {
         this.componentCreator = componentCreator;
+        this.jsonManager = new JsonManager();
     }
 
     public University createTypicalUniversity(String name) {
@@ -36,48 +35,18 @@ public class UniversityCreator {
         Student student2 = (Student) componentCreator.createStudent("Анастасія", "Малежик", "Юріївна", Sex.FEMALE, group2);
         department2.addStudent(student2);
 
-
-        System.out.println("Університет: " + university.getName());
-        System.out.println("\nФакультет: " + faculty1.getName());
-        System.out.println("Кафедра: " + department1.getName());
-        System.out.println(student1.toString());
-
-        System.out.println("\nФакультет: " + faculty2.getName());
-        System.out.println("Кафедра: " + department2.getName());
-        System.out.println(student2.toString());
-
         return university;
     }
 
-    public University loadUniversityFromJsonFile(String filePath) {
-        JsonManager jsonManager = new JsonManager();
-        String json;
+    public void saveUniversityToJsonFile(University university, String filePath) throws IOException {
+        String json = jsonManager.toJson(university);
+        jsonManager.writeJsonToFile(json, filePath);
+    }
 
-        try {
-            json = FileUtils.readFile(filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
+    public University loadUniversityFromJsonFile(String filePath) throws IOException {
+        String json = jsonManager.readJsonFromFile(filePath);
         return jsonManager.fromJson(json, University.class);
     }
-
-    public void saveUniversityToJsonFile(University university, String filePath) {
-        // Create an instance of JsonManager
-        JsonManager jsonManager = new JsonManager();
-
-        // Convert the University object to JSON string
-        String json = jsonManager.toJson(university);
-
-        try (FileWriter fileWriter = new FileWriter(filePath)) {
-            // Write the JSON string to the file
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
 
 
