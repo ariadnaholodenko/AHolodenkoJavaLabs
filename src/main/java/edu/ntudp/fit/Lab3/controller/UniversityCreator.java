@@ -10,7 +10,7 @@ public class UniversityCreator {
     }
 
     public University createTypicalUniversity(String name) {
-        University university = (University) componentCreator.createUniversity("НТУ ДП");
+        University university = (University) componentCreator.createUniversity(name);
 
         Faculty faculty1 = componentCreator.createFaculty("Інформаційних технологій", new Human("Дмитро", "Дмитренко", "Дмитрович", Sex.MALE));
         university.addFaculty(faculty1);
