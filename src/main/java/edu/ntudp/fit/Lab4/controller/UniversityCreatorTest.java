@@ -17,7 +17,7 @@ public class UniversityCreatorTest {
 
     @Test
     public void testCreateTypicalUniversity() {
-        String universityName = "My University";
+        String universityName = "Нту ДП";
         University oldUniversity = universityCreator.createTypicalUniversity(universityName);
 
         // Assert the oldUniversity name
