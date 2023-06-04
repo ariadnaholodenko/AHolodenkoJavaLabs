@@ -43,7 +43,7 @@ public class UniversityCreatorTest {
         Assert.assertEquals(1, department2.getStudents().size());
 
         // Create a new oldUniversity from the JSON file
-        String filePath = "oldUniversity.json";
+        String filePath = "test.json";
         try {
             universityCreator.saveUniversityToJsonFile(oldUniversity, filePath);
             University newUniversity = universityCreator.loadUniversityFromJsonFile(filePath);
